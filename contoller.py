@@ -17,4 +17,6 @@ def contoller():
         if event.type==type_model:
             model.tasks()
         if event.type==spawn_timer:
-            model.result.paint()
+            model.snehinka_paint()
+        if event.type==pygame.KEYDOWN and event.key==pygame.K_TAB:
+            model.debug=not model.debug

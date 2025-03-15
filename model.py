@@ -1,9 +1,17 @@
 import random
 
+import pygame.display
+
 import snehinka
+import view
 
-result=snehinka.Snehinka(random.randint(1,900),-100)
+snehinki=[]
+debug=False
 
-print(result)
 def tasks():
-    result.falling()
+    for snowflake in snehinki:
+        snowflake.falling()
+
+def snehinka_paint():
+    result = snehinka.Snehinka(random.randint(1, 900), 100,random.randint(1,30)/5)
+    snehinki.append(result)
