@@ -1,6 +1,6 @@
 import pygame
 
-import model
+import model,snehinka
 
 
 pygame.init()
@@ -20,3 +20,10 @@ def contoller():
             model.snehinka_paint()
         if event.type==pygame.KEYDOWN and event.key==pygame.K_TAB:
             model.debug=not model.debug
+        if event.type==pygame.MOUSEBUTTONDOWN and event.button==pygame.BUTTON_LEFT:
+            model.snehinka_change(event.pos)
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == pygame.BUTTON_RIGHT:
+            mouse=pygame.mouse.get_pressed()
+        if event.type==pygame.MOUSEMOTION:
+            model.move(event.pos,event.buttons)
+            pygame.display.set_caption(str(event.pos))
