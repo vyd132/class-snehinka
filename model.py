@@ -8,6 +8,7 @@ import view
 snehinki=[]
 debug=False
 fps=0
+grabbed=None
 
 
 def tasks():
@@ -22,9 +23,29 @@ def snehinka_change(pos):
     for snowflake in snehinki:
         snowflake.change(pos)
 
-def move(pos,mouse):
+def move(pos):
     for snowflake in snehinki:
-        snowflake.move(pos,mouse)
+        if grabbed==snowflake:
+            snowflake.move(pos)
+
+def grab(pos):
+    global grabbed
+    for snowflake in snehinki:
+        if snowflake.rect.collidepoint(pos):
+            grabbed=snowflake
+            snowflake.fall = False
+            return
+
+
+
+def release():
+    global grabbed
+    for snowflake in snehinki:
+        if snowflake==grabbed:
+            snowflake.fall = True
+            grabbed = None
+
+            return
 
 def model():
     pass

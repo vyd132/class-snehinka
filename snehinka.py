@@ -14,13 +14,13 @@ class Snehinka():
         self.rect = pygame.rect.Rect([x, y, snowflake.get_height(), snowflake.get_height()])
         self.alt_y=y
         self.current_image=snowflake
-        self.grabbed=False
+        self.fall=True
     def paint(self,screen:pygame.Surface):
         screen.blit(self.current_image,[self.rect.x,self.rect.y])
 
 
     def falling(self):
-        if self.grabbed:
+        if self.fall!=True:
             return
         self.alt_y+=self.fall_y
         self.rect.y=self.alt_y
@@ -37,16 +37,9 @@ class Snehinka():
             self.rect.height =water.get_height()
             self.fall_y=10
 
-    def move(self,pos,buttons):
-        if buttons[2]==False:
-            self.grabbed = False
-            self.alt_y =self.rect.y
-            return
-        if self.rect.collidepoint(pos):
-            self.grabbed=True
-        if self.grabbed:
-            self.rect.centerx=pos[0]
-            self.rect.centery=pos[1]
-            self.alt_y=pos[1]
+    def move(self,pos):
+        self.rect.centerx=pos[0]
+        self.rect.centery=pos[1]
+        self.alt_y= self.rect.y
 
 
