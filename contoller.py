@@ -11,6 +11,8 @@ spawn_timer=pygame.event.custom_type()
 pygame.time.set_timer(spawn_timer,2000)
 def contoller():
     events=pygame.event.get()
+    for snowflake in model.snehinki:
+        snowflake.controller(events)
     for event in events:
 
         if event.type==pygame.QUIT:
@@ -24,7 +26,10 @@ def contoller():
         if event.type==pygame.MOUSEBUTTONDOWN and event.button==pygame.BUTTON_LEFT:
             model.snehinka_change(event.pos)
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == pygame.BUTTON_RIGHT:
+            model.snowflake_buy(event.pos)
+            model.water_buy(event.pos)
             model.grab(event.pos)
+            print(model.grabbed)
         if event.type == pygame.MOUSEBUTTONUP and event.button == pygame.BUTTON_RIGHT:
             model.release()
         if event.type==pygame.MOUSEMOTION:
